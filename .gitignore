@@ -1,0 +1,15 @@
+# Compiled source files
+*.pyc
+*.pyo
+
+# Build artifacts
+dist/
+build/
+
+# Test artifacts
+.pytest_cache/
+.tox/
+
+# Virtual environment
+.venv/
+.env/
