@@ -1,5 +1,8 @@
 import argparse
 
+# this solution is painfully verbose, still trying to grok the language
+# and not thinking much about the question at a deeper/conceptual level 
+
 shapeToPoints = {
   'A': 1, 'B': 2, 'C': 3,
   'X': 1, 'Y': 2, 'Z': 3,
