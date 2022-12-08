@@ -2,6 +2,7 @@ import helper
 
 def main():
   lines = helper.get_input(4)
+  lines = lines.splitlines()
 
   containedCount = 0
   overlapCount = 0

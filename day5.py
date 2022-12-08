@@ -4,6 +4,7 @@ import copy
 
 def main():
   input = helper.get_input(5)
+  input = input.splitlines()
 
   # get all the lines starting with [
   lines = []

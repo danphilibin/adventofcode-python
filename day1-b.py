@@ -1,14 +1,12 @@
-import os
-
+import helper
 # rewrote after day 5 when I understand lists a bit better
 
 def main():
-  input_file = os.path.join(os.path.dirname(__file__), '..', 'input/day1.txt')
-  lines = open(input_file, "r").read()
+  input = helper.get_input(1)
   
   totals = list(
     map(lambda elf: sum(map(int, elf.split('\n'))),
-    lines.split('\n\n'))
+    input.split('\n\n'))
   )
 
   totals.sort()

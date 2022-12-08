@@ -5,6 +5,7 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz'
 def main():
   # using a helper this time
   lines = helper.get_input(3)
+  lines = lines.splitlines()
 
   total = 0
 
