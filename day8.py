@@ -1,7 +1,5 @@
 import numpy as np
 
-# unfinished
-
 
 def main():
     input = open("./input/day8.txt", "r").read()
@@ -14,21 +12,47 @@ def main():
     arr = np.array(chars).reshape(line_len, total_lines)
 
     visible = 0
+    high_score = 0
 
     for row_idx, line in enumerate(lines):
         for col_idx, h in enumerate([int(n) for n in line]):
-            if row_idx == 0 or row_idx == total_lines - 1:
-                visible += 1
-                continue
-
-            if col_idx == 0 or col_idx == line_len - 1:
-                visible += 1
-                continue
+            local_score = 0
 
             prev_nums_in_column = arr[:row_idx, col_idx]
             next_nums_in_column = arr[row_idx + 1 :, col_idx]
             prev_nums_in_row = arr[row_idx, :col_idx]
             next_nums_in_row = arr[row_idx, col_idx + 1 :]
+
+            scores = [0, 0, 0, 0]
+
+            for dir_idx, l in enumerate(
+                [
+                    np.flip(prev_nums_in_column),
+                    next_nums_in_column,
+                    np.flip(prev_nums_in_row),
+                    next_nums_in_row,
+                ]
+            ):
+                for n in l:
+                    scores[dir_idx] += 1
+
+                    if n >= h:
+                        break
+
+            local_score = np.prod(scores)
+
+            if local_score > high_score:
+                high_score = local_score
+
+            # count first and last row and column
+            if (
+                row_idx == 0
+                or row_idx == total_lines - 1
+                or col_idx == 0
+                or col_idx == line_len - 1
+            ):
+                visible += 1
+                continue
 
             if (
                 (h > prev_nums_in_column).all()
@@ -37,13 +61,9 @@ def main():
                 or (h > next_nums_in_row).all()
             ):
                 visible += 1
-                if row_idx == 3:
-                    print("adding", h, "at", row_idx, col_idx, "to visible")
-            else:
-                if row_idx == 3:
-                    print("not adding", h, "at", row_idx, col_idx, "to visible")
 
-    print("answer 1:", visible)  # 1794
+    print("answer 1:", visible)
+    print("answer 2:", high_score)
 
 
 main()
